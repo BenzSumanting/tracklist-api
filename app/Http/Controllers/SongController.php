@@ -19,6 +19,12 @@ class SongController extends Controller
 
         return response()->json([
             'data' => SongResource::collection($songs),
+            'links' => [
+                'first' => $songs->url(1),
+                'last' => $songs->url($songs->lastPage()),
+                'prev' => $songs->previousPageUrl(),
+                'next' => $songs->nextPageUrl(),
+            ],
             'meta' => [
                 'current_page' => $songs->currentPage(),
                 'last_page' => $songs->lastPage(),
